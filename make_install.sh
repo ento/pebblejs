@@ -1,10 +1,11 @@
 #!/bin/bash
 # usage: ./make_install.sh --phone=10.0.1.2 -v
 
-parts=("src/js/elm-module-preamble.js" "build/elm.js" "src/js/elm-module-postamble.js")
-target=build/src/js/elm-module.js
+parts=("src/elm-module-preamble.js" "build/elm.js" "src/elm-module-postamble.js")
+target=src/js/elm-module.js
+src="src/elm/Watchface.elm src/elm/StartPebble.elm"
 
-elm-make src/elm/App.elm --output=build/elm.js || exit 1
+elm-make $src --output=build/elm.js || exit 1
 
 echo '' > "$target"
 for part in "${parts[@]}"; do

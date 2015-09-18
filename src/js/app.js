@@ -11,17 +11,17 @@ var Elm = require('elm-module');
 var main = new UI.Card({
   title: 'Pebble.elm',
   icon: 'images/menu_icon.png',
-  subtitle: 'Hello!',
-  body: 'Press any button.'
+  subtitle: 'StartPebble v1',
+  body: 'Ticking...'
 });
 
 main.show();
 
 console.log('Watchface running!');
 
-var app = Elm.worker(Elm.App);
+var app = Elm.worker(Elm.Watchface);
 
-app.ports.tick.subscribe(function(number) {
-  console.log('Hello from JavaScript ' + number);
-  main.body('Tick ' + number);
+app.ports.model.subscribe(function(model) {
+  console.log('Hello from JavaScript ' + model.time);
+  main.body('Tick ' + model.time);
 });
